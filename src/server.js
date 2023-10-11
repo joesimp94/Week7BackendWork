@@ -3,26 +3,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 require("./db/connection");
+const Book = require("./books/model");
 
 const app = express();
 
 app.use(express.json());
-
-const bookSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  author: {
-    type: String,
-  },
-  genre: {
-    type: String,
-  },
-});
-
-const Book = mongoose.model("book", bookSchema);
 
 app.get("/books", async (request, response) => {
   console.log(request.originalUrl);
